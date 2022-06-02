@@ -1,0 +1,128 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class=" container">
+        <div class="header d-flex justify-content-evenly col-md-4">
+            <a class="navbar-brand" href="#">Task Manager</a>
+        </div>
+        <div class="col-md-4">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <button class="m1 btn btn-outline-primary" routerLink="quote">Quotes</button>
+                </li>
+
+                <li>
+                    <button class="btn btn-outline-primary " (click)="addNewQuote() ">Add Quote </button>
+                </li>
+
+                <li class="nav-item">
+                    <button class="m1 btn btn-outline-primary" (click)="logout()">Log out</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div>
+    <div class="AddTopBackGroup container">
+        <div class="d-flex text-center row align-items-start">
+            <div class="col">
+                <mat-form-field appearance="standard" class="float-right form-inline my-2 my-lg-0">
+                    <mat-label>Show </mat-label>
+                    <mat-select [(value)]="pageSizeSelect" (valueChange)="changePageSize($event)">
+                        <mat-option value=>5</mat-option>
+                        <mat-option value="10">10</mat-option>
+                        <mat-option value="25">25</mat-option>
+                        <mat-option value="50">50</mat-option>
+                    </mat-select>
+                    <mat-label> Entries:</mat-label>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field appearance="standard" class="float-right form-inline my-2 my-lg-0">
+                    <mat-label>Order By: </mat-label>
+                    <mat-select [(value)]="sortSelect" (valueChange)="changeSortColumn($event)">
+                        <mat-option *ngFor="let item of sortOptions" [value]="item.value">
+                            {{item.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <section class="float-right form-inline my-2 my-lg-0 blass">
+                    <mat-label>Order: </mat-label>
+                    <mat-radio-group [(ngModel)]="selected" aria-label="Select an option">
+                        <mat-radio-button value='asc' (change)="changeOrder()">Ascending</mat-radio-button>
+                        <mat-radio-button value='desc' (change)="changeOrder()">Descending</mat-radio-button>
+                    </mat-radio-group>
+                </section>
+
+
+            </div>
+            <div class="col">
+                <mat-form-field appearance="standard" class="float-right form-inline my-2 my-lg-0">
+                    <mat-label>Search:</mat-label>
+                    <input matInput (keyup)="applyFilter($event) " placeholder="Search " #input>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="full-width-table" matSort aria-label="Elements">
+            <ng-container matColumnDef="QuoteID">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>QuoteID</th>
+                <td mat-cell *matCellDef="let row">{{row.QuoteID}}</td>
+            </ng-container>
+            <ng-container matColumnDef="QuoteType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="disabled">QuoteType</th>
+                <td mat-cell *matCellDef="let row">{{row.QuoteType}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Contact">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
+                <td mat-cell *matCellDef="let row">{{row.Contact}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Task">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Task</th>
+                <td mat-cell *matCellDef="let row">{{row.Task}}</td>
+            </ng-container>
+            <ng-container matColumnDef="TaskType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>TaskType</th>
+                <td mat-cell *matCellDef="let row">{{row.TaskType}}</td>
+            </ng-container>
+            <ng-container matColumnDef="DueDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>DueDate</th>
+                <td mat-cell *matCellDef="let row">{{row.DueDate}}</td>
+            </ng-container>
+            <ng-container matColumnDef="details">
+                <th mat-header-cell *matHeaderCellDef> Details </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary" (click)="redirectToDetails(row.QuoteID)">
+                        <mat-icon class="mat-18">remove_red_eye</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="update">
+                <th mat-header-cell *matHeaderCellDef> Update </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="accent" (click)="redirectToUpdate(row.QuoteID)">
+                        <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef> Delete </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="warn" (click)="redirectToDelete(row.QuoteID)">
+                        <mat-icon class="mat-18">delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator #paginator [pageIndex]="0" [pageSize]="pageSizeSelect" [pageSizeOptions]="[5, 10, 25, 50]" aria-label="Select page" showFirstLastButtons="">
+        </mat-paginator>
+    </div>
+</div>

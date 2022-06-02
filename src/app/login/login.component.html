@@ -1,0 +1,193 @@
+<!-- <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="login-wrap p-0">
+            <form [formGroup]="loginForm" (ngSubmit)="SubmitForm()">
+                <div style="width: 70vw;">
+
+                    <div class="row">
+                        <div class="col-4 formLabelClass">Quote Type</div>
+                        <div class="col-8 formControlClass">
+                            <input formControlName="username" type="text">
+                            <span class="errorClass" *ngIf="username.invalid && (username.dirty || username.touched)">
+                    *Required</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 formLabelClass">Contact</div>
+                        <div class="col-8 formControlClass">
+                            <input formControlName="password" type="text">
+                            <span class="errorClass" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    *Required</span>
+
+
+                        </div>
+                    </div>
+
+                    <button mat-button mat-dialog-close (click)="CancelForm()">Cancel</button>
+                    <button type="submit" mat-button cdkFocusInitial>Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Task Manager</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center ">
+        <div class="col-md-6 col-lg-4 addBlast">
+            <div class="login-wrap p-0">
+                <h3 class="mb-4 text-center">Login</h3>
+
+                <form action="#" class="signin-form" [formGroup]="loginForm" (ngSubmit)="SubmitForm()">
+                    <div class="form-group formControlClass">
+                        <input type="text" class="form-control" formControlName="username" placeholder="Username" required>
+                        <span class="errorClass" *ngIf="username.invalid && (username.dirty || username.touched)">
+                            *Required</span>
+                    </div>
+                    <div class="form-group formControlClass">
+                        <div class="WhatTheHell">
+                            <input #inputToggle id="password-field" type="password" formControlName="password" class="form-control" placeholder="Password" required>
+                            <span id="password">
+                            <i (click)="visibility" class='material-icons'>{{ visib ? 'visibility': 'visibility_off'}}</i>
+                        </span>
+                        </div>
+
+                        <span class="errorClass" *ngIf="password.invalid && (password.dirty || password.touched)">
+                            *Required</span>
+                    </div>
+                    <br>
+
+                    <div class="form-group formControlClass">
+                        <div>
+                            <button mat-button cdkFocusInitial type="submit" class="form-control btn btn-primary submit px-3">Login In</button>
+                            <!-- <button mat-button mat-dialog-close (click)="CancelForm()" class="form-control btn btn-primary submit px-1">Cancel</button> -->
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group formControlClass d-flex text-center">
+                        <p>Need an account ?</p>
+                        <a routerLink="/register" (click)="CancelForm()">SIGN UP</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- 
+<form [formGroup]="registerForm" (ngSubmit)="SubmitForm()">
+    <div style="width: 70vw;">
+
+        <div class="row">
+            <div class="col-4 formLabelClass">Username</div>
+            <div class="col-8 formControlClass">
+                <input formControlName="username" type="text">
+
+                <label class="errorClass" *ngIf="username.invalid && !username.dirty && username.touched" [ngClass]="username.invalid ? 'text-danger' : 'text-success' ">
+                    <i class="material-icons ">
+                        {{
+                        username.invalid && (username.touched || username.dirty)
+                        ? 'cancel' : 'check_circle' }}
+                    </i>
+                    Please Enter Username
+                </label>
+                <label class="errorClass" *ngIf="username.touched && username.errors?.['minlength']" [ngClass]="username.invalid ? 'text-danger' : 'text-success' ">
+                    <i class="material-icons ">
+                        {{
+                        username.invalid && (username.touched || username.dirty)
+                        ? 'cancel' : 'check_circle' }}
+                    </i>
+                    User name should be at least 6 letter
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 formLabelClass">EmailID</div>
+            <div class="col-8 formControlClass">
+                <input formControlName="useremailid" type="email">
+                <label class="errorClass" *ngIf="useremailid.invalid && useremailid.touched && !useremailid.dirty" [ngClass]="useremailid.touched ? 'text-danger' : 'text-success' ">
+                    <i class="material-icons ">
+                        {{
+                        useremailid.invalid && (useremailid.touched || useremailid.dirty)
+                        ? 'cancel' : 'check_circle' }}
+                    </i>
+                    Please Enter Email address
+                </label>
+                <label class="errorClass" *ngIf="useremailid.invalid && !useremailid.email && useremailid.dirty" [ngClass]="useremailid.invalid && (useremailid.dirty || useremailid.touched) ? 'text-danger' : 'text-success' ">
+                    <i class="material-icons ">
+                        {{
+                        useremailid.invalid && (useremailid.dirty || useremailid.touched)
+                        ? 'cancel' : 'check_circle' }}
+                    </i>
+                    Incorrect Email address
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 formLabelClass">Password</div>
+            <div class="col-8 formControlClass">
+                <input formControlName="userpassword" type="password">
+
+
+
+
+                <label class="errorClass" *ngIf="userpassword.touched && (userpassword.errors?.['minlength'] || userpassword.errors?.['maxlength']) " [ngClass]="userpassword.invalid ? 'text-danger' : 'text-success' ">
+                    <i class="material-icons ">
+                        {{
+                        userpassword.invalid && (userpassword.touched || userpassword.dirty)
+                        ? 'cancel' : 'check_circle' }}
+                    </i>
+                    Password should contain minimum 8 and maximum 18 letter
+                </label>
+
+                <label class="errorClass" *ngIf="userpassword.invalid && userpassword.dirty && userpassword.touched && !(userpassword.errors?.['minlength'] && userpassword.errors?.['maxlength'])" [ngClass]="userpassword.invalid ? 'text-danger' : 'text-success' ">
+                    <i class="material-icons ">
+                        {{
+                        userpassword.invalid && (userpassword.touched || userpassword.dirty)
+                        ? 'cancel' : 'check_circle' }}
+                    </i>
+                    Please Enter Password
+                </label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-4 formLabelClass">Confirm Password</div>
+            <div class="col-8 formControlClass">
+                <input formControlName="confirmpassword" type="password">
+
+                <label class="errorClass" *ngIf="confirmpassword.invalid && !confirmpassword.dirty && confirmpassword.touched" [ngClass]="confirmpassword.invalid ? 'text-danger' : 'text-success' ">
+                    <i class="material-icons ">
+                        {{
+                        confirmpassword.invalid && (confirmpassword.touched || confirmpassword.dirty)
+                        ? 'cancel' : 'check_circle' }}
+                    </i>
+                    Please Enter Confirm Password
+                </label>
+                <label class="errorClass" *ngIf="(confirmpassword.invalid && confirmpassword.touched && confirmpassword.dirty) || validationHelper['confirmpassword'].getError('passwordMatchValidator')" [ngClass]="confirmpassword.invalid ? 'text-danger' : 'text-success' ">
+                    <i class="material-icons ">
+                        {{
+                        confirmpassword.invalid && (confirmpassword.touched || confirmpassword.dirty)
+                        ? 'cancel' : 'check_circle' }}
+                    </i>
+                    Confirm Password Does Not Match With Password
+                </label>
+            </div>
+        </div>
+
+
+
+        <button mat-button mat-dialog-close (click)="CancelForm()">Cancel</button>
+        <button type="submit" mat-button cdkFocusInitial>Submit</button>
+    </div>
+</form> -->

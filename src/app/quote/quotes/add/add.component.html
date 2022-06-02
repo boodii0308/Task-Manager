@@ -1,0 +1,213 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class=" container">
+        <div class="header d-flex justify-content-evenly col-md-4">
+            <h3 class="navbar-brand" href="#">Task Manager</h3>
+        </div>
+        <div class="col-md-4">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <button class="m1 btn btn-outline-primary" routerLink="/quote">Quotes</button>
+                </li>
+
+                <li class="nav-item">
+                    <button class="m1 btn btn-outline-primary" (click)="logout()">Log out</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Task Manager</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center ">
+        <div class="col-md-6 col-lg-4 addBlast">
+            <div class="login-wrap p-0">
+                <h3 class="mb-4 text-center">Add New Quote</h3>
+
+                <form action="#" class="signin-form" [formGroup]="inputForm" (ngSubmit)="SubmitForm()">
+
+
+                    <div class="form-group">
+                        <div class=" ">Quote ID</div>
+                        <div class=" formControlClass">
+                            <input readonly style="background-color: gainsboro;" class="form-control" formControlName="QuoteID" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="formLabelClass">Quote Type</div>
+                        <div class="formControlClass">
+                            <input type="text" class="form-control" formControlName="QuoteType" placeholder="Quote Type" required>
+                            <label class="errorClass" *ngIf="QuoteType.invalid && (QuoteType.touched || QuoteType.dirty)" [ngClass]="QuoteType.touched ? 'text-danger' : 'text-success' ">
+                                <i class="material-icons ">
+                                    {{
+                                        QuoteType.invalid && (QuoteType.touched || QuoteType.dirty)
+                                    ? 'cancel' : 'check_circle' }}
+                                </i>
+                                Please Enter Quote Type
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="formLabelClass">Contact </div>
+                        <div class="formControlClass">
+                            <input type="text" class="form-control" formControlName="Contact" placeholder="Contact" required>
+                            <label class="errorClass" *ngIf="Contact.invalid && (Contact.touched || Contact.dirty)" [ngClass]="Contact.touched ? 'text-danger' : 'text-success' ">
+                                <i class="material-icons ">
+                                    {{
+                                        Contact.invalid && (Contact.touched || Contact.dirty)
+                                    ? 'cancel' : 'check_circle' }}
+                                </i>
+                                Please Enter Contact
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="formLabelClass">Task </div>
+                        <div class="formControlClass">
+                            <input type="text" class="form-control" formControlName="Task" placeholder="Task" required>
+                            <label class="errorClass" *ngIf="Task.invalid && (Task.touched || Task.dirty)" [ngClass]="Task.touched ? 'text-danger' : 'text-success' ">
+                                <i class="material-icons ">
+                                    {{
+                                        Task.invalid && (Task.touched || Task.dirty)
+                                    ? 'cancel' : 'check_circle' }}
+                                </i>
+                                Please Enter Task
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="formLabelClass">Task Type </div>
+                        <div class="formControlClass">
+                            <input type="text" class="form-control" formControlName="TaskType" placeholder="Task Type" required>
+                            <label class="errorClass" *ngIf="TaskType.invalid && (TaskType.touched || TaskType.dirty)" [ngClass]="TaskType.touched ? 'text-danger' : 'text-success' ">
+                                <i class="material-icons ">
+                                    {{
+                                        TaskType.invalid && (TaskType.touched || TaskType.dirty)
+                                    ? 'cancel' : 'check_circle' }}
+                                </i>
+                                Please Enter TaskType
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="formLabelClass">Due Date </div>
+                        <div class="formControlClass">
+                            <div class="WhatTheHell">
+                                <input matInput [matDatepicker]="datePicker" type="text" class="form-control" formControlName="DueDate" placeholder="Due Date" required>
+                                <mat-datepicker-toggle matSuffix id="datePicker" [for]="datePicker"></mat-datepicker-toggle>
+                                <mat-datepicker #datePicker></mat-datepicker>
+                            </div>
+                            <!-- 
+                            <mat-form-field>
+
+                                <ngx-mat-timepicker #timePicker [(ngModel)]="time">
+                                </ngx-mat-timepicker>
+                            </mat-form-field> -->
+                            <label class="errorClass" *ngIf="DueDate.invalid && (DueDate.touched || DueDate.dirty)" [ngClass]="DueDate.touched ? 'text-danger' : 'text-success' ">
+                                <i class="material-icons ">
+                                    {{
+                                        DueDate.invalid && (DueDate.touched || DueDate.dirty)
+                                    ? 'cancel' : 'check_circle' }}
+                                </i>
+                                Please Enter Due Date
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="formLabelClass">Time </div>
+                        <div class="formControlClass">
+                            <div>
+                                <input matInput type="time" class="form-control" formControlName="Time" placeholder="Time" required>
+                            </div>
+
+                            <label class="errorClass" *ngIf="Time.invalid && (Time.touched || Time.dirty)" [ngClass]="Time.touched ? 'text-danger' : 'text-success' ">
+                                <i class="material-icons ">
+                                    {{
+                                        Time.invalid && (Time.touched || Time.dirty)
+                                    ? 'cancel' : 'check_circle' }}
+                                </i>
+                                Please Enter Time
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group formControlClass">
+                        <div class="d-flex text-center">
+                            <button mat-button mat-dialog-close (click)="cancelAddQoute()" class="form-control btn btn-primary submit px-1">Cancel</button>
+                            <button mat-button cdkFocusInitial type="submit" class="form-control btn btn-primary submit px-3">Add Quote</button>
+
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<form [formGroup]="inputForm" (ngSubmit)="SubmitForm()">
+    <div>
+        <div style="width: 70vw;">
+            <div class="row">
+                <div class="col-4 formLabelClass">Quote Id</div>
+                <div class="col-8 formControlClass"> <input readonly style="background-color: gainsboro;" formControlName="QuoteID" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 formLabelClass">Quote Type</div>
+                <div class="col-8 formControlClass">
+                    <input formControlName="QuoteType" type="text">
+                    <span class="errorClass" *ngIf="QuoteType.invalid && (QuoteType.dirty || QuoteType.touched)">
+                    *Required</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 formLabelClass">Contact</div>
+                <div class="col-8 formControlClass">
+                    <input formControlName="Contact" type="text">
+                    <span class="errorClass" *ngIf="Contact.invalid && (Contact.dirty || Contact.touched)">
+                    *Required</span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 formLabelClass">Task</div>
+                <div class="col-8 formControlClass">
+                    <input type="text" formControlName="Task">
+                    <span class="errorClass" *ngIf="Task.invalid && (Task.dirty || Task.touched)">
+                    *Required</span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 formLabelClass">TaskType</div>
+                <div class="col-8 formControlClass">
+                    <input type="text" formControlName="TaskType">
+                    <span class="errorClass" *ngIf="TaskType.invalid && (TaskType.dirty || TaskType.touched)">
+                        *Required</span>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4 formLabelClass">DueDate</div>
+                <div class="col-8 formControlClass">
+                    <input type="text" formControlName="DueDate">
+                    <span class="errorClass" *ngIf="DueDate.invalid && (DueDate.dirty || DueDate.touched)">
+                            *Required</span>
+                </div>
+
+                <button mat-button mat-dialog-close (click)="cancelAddQoute()">Cancel</button>
+                <button type="submit" mat-button cdkFocusInitial>Submit</button>
+
+            </div>
+        </div>
+    </div>
+</form> -->

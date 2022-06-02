@@ -1,0 +1,29 @@
+.container {
+    padding-top: 56px;
+    margin-top: 56px;
+}
+
+.navbar {
+    padding-left: 10%;
+    padding-right: 10%;
+    display: inline;
+    height: 11%;
+}
+
+#sect1 {
+    height: 100%;
+}
+
+.backGround {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .5;
+    z-index: -1;
+    background-size: 100%;
+    background-size: cover;
+    background-color: transparent;
+    background-image: url("../assets/images/bg.jpg");
+}

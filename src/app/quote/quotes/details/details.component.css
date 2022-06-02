@@ -1,0 +1,26 @@
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+}
+
+.addBlast {
+    backdrop-filter: blur(4px);
+    opacity: 1;
+}
+
+#datePicker {
+    z-index: 9999;
+    position: absolute;
+    top: 45%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: rgba(21, 19, 19, 0.9);
+}
+
+.WhatTheHell {
+    position: relative;
+}
